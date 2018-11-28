@@ -18,9 +18,11 @@ public class PocApplication {
 						"import com.sample.compiler.poc.bo.SampleBO; " +
 						"class RuntimeCompilerTest implements java.util.function.Supplier<String> { " +
 						"public String get() { " +
+						"SampleBO sample = new SampleBO();" +
+						"System.out.println(sample.getClass());" +
 						"return \"Hello World!\"; } " +
-						"}"
-		).create().get();
+						"}",
+				Thread.currentThread().getContextClassLoader()).create().get();
 
 		System.out.println("----------------------------- REFLECT -----------------------------");
 		System.out.println(supplier.getClass() + " - " + supplier.get());
